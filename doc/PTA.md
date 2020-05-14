@@ -32,27 +32,29 @@ This class can have different implementations, all of them complying with a
 basic public API:
 
  -------------------------------------------------------------------------------
+ | Method                  | Description                                       |
+ --------------------------|----------------------------------------------------
  | `hasPointsTo`           |  returns true if                                  |
  |                         |   1) PTA has any points-to set for the given value|
  |                         |   2) the points-to set is non-empty               |
- -------------------------------------------------------------------------------
+ |                         |                                                   |
  | `getLLVMPointsTo`       | Returns points-to set (object of the class        |
  |                         | `LLVMPointsToSet`, see below) for the given value.|
  |                         | If `hasPointsTo` would be false for the given     |
  |                         | value, points-to set containging the only element |
  |                         | `unknown` is returned.                            |
- -------------------------------------------------------------------------------
+ |                         |                                                   |
  | `getLLVMPointsToChecked`| Returns points-to set (object of the class        |
  |                         | `LLVMPointsToSet`, see below) for the given value |
  |                         | and a bool which corresponds with the result of   |
  |                         | `hasPointsTo`.                                    |
- -------------------------------------------------------------------------------
+ |                         |                                                   |
  | `getAccessedMemory`     | A wrapper around getLLVMPointsTo that returns     |
  |                         | `LLVMMemoryRegionSet`. This object represents a   |
- |                         | set of tripples (memory, offset, length) descri-  |
+ |                         | set of tripples (memory, offset, length) descri-   |
  |                         | bing the regions of memory accessed by the given  |
  |                         | instruction (e.g., store or load).                |
- -------------------------------------------------------------------------------
+ --------------------------|-----------------------------------------------------
 
 The boolean returned from the method `getLLVMPointsToChecked` is good for
 checking whether the `unknown` pointer in the points-to set (if any) is a
